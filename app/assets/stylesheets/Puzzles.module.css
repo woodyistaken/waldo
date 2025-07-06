@@ -1,0 +1,35 @@
+.background{
+  box-sizing: border-box;
+  background-color: aqua;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height:100vh;
+}
+
+.container{
+  margin:0px 50px;
+  padding:30px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.heading{
+  text-align: center;
+  margin:0px;
+  margin-bottom:20px;
+}
+
+.puzzleContainer{
+  display: flex;
+  
+  gap:30px;
+}
+.card{
+  flex:1;
+
+  text-decoration: none;
+  color:black;
+}

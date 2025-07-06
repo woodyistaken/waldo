@@ -1,0 +1,36 @@
+.background{
+  box-sizing: border-box;
+  background-color: aqua;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:30px;
+}
+
+.container{
+  margin:0px 100px;
+  padding:30px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: right;
+  max-width:100%;
+}
+.heading{
+  text-align: center;
+  font-size:2rem;
+}
+.img{
+  width:100%;
+  height:auto;
+  min-width:100%;
+  display: inline-block;
+}
+.imgContainer{
+  position:relative
+}
+.stats{
+  display:flex;
+  justify-content: space-between;
+  font-size:1rem;
+}

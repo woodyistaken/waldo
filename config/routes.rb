@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+     get "puzzles/index", to: "puzzles#index"
+     get "puzzles/:id", to: "puzzles#show"
+     get "characters/:id", to: "puzzles#characters"
+     post "puzzles/checkCoords", to: "puzzles#checkCoords"
+     post "puzzles/checkWin", to: "puzzles#checkWin"
+  end
+  root "homepage#index"
+  get "/*path" => "homepage#index"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
