@@ -6,6 +6,7 @@ Rails.application.routes.draw do
      get "characters/:id", to: "puzzles#characters"
      post "puzzles/checkCoords", to: "puzzles#checkCoords"
      post "puzzles/checkWin", to: "puzzles#checkWin"
+     post "puzzles/deleteGame", to: "puzzles#deleteGame"
   end
   root "homepage#index"
   get "/*path" => "homepage#index"

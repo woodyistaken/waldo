@@ -40,7 +40,6 @@ import Card from './Card'
   const puzzleList=puzzles.map((puzzle)=>{
     return<Link className={style.card} key={puzzle.id} to={`/puzzles/${puzzle.id}`}> <Card   imageUrl={puzzle.imageUrl} name={puzzle.name}/></Link>
   })
-  console.log(puzzles)
   return (
     <div className={style.background}>
       <div className={style.container}>

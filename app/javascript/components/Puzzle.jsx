@@ -5,6 +5,7 @@ import { useState,useEffect,useRef } from "react";
 import style from '../../assets/stylesheets/Puzzle.module.css'
 import Dropdown from "./Dropdown";
 import CorrectCircle from "./CorrectCircle";
+import WinDialog from "./WinDialog";
 
 export default function Puzzle(){
   const params=useParams()
@@ -17,7 +18,11 @@ export default function Puzzle(){
   const [dropdownOpen,setDropdownOpen]=useState(false)
   const [correctCoords,setCorrectCoords]=useState([])
   const [win,setWin]=useState(false)
+  const gameId=useRef()
   const imageNode=useRef()
+  const [time,setTime]=useState(null)
+  const [playTime,setPlayTime]=useState(0)
+  const timer=useRef()
   useEffect(()=>{
     const url = `/api/puzzles/${params.id}`;
     setError(false)
@@ -30,7 +35,10 @@ export default function Puzzle(){
       throw new Error("Network response was not ok.");
     })
     .then(
-      (res) => setPuzzle(res)
+      (res) => {
+        gameId.current=res.game_id
+        setPuzzle(res.puzzle)
+      }
     )
     .catch((e)=>{
       setError(true)
@@ -66,6 +74,7 @@ export default function Puzzle(){
       
       coords:correctCoords,
       puzzle_id: puzzle.id,
+      game_id:gameId.current
     }
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
@@ -83,12 +92,36 @@ export default function Puzzle(){
       throw new Error("Network response was not ok.");
     })
     .then((response) => {
-      console.log(response)
-      
+      if(response.win){
+        setTime(response.finishedTime)
+        setWin(true)
+      }
     })
     .catch((error) => console.log(error.message));
   },[correctCoords.length])
-
+  useEffect(()=>{
+    window.addEventListener('beforeunload',()=>{
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+      fetch(`/api/puzzles/deleteGame`, {
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({game_id:gameId.current}),
+      });
+  } )},[])
+  useEffect(()=>{
+    function tick(){
+      setPlayTime((playTime)=>playTime+1)
+    }
+    if(!win){
+      timer.current= setInterval(tick,1000)
+    }
+    return ()=>clearInterval(timer.current)
+  },[win])
+  
+  
 
   if(loading){
     return <div>Loading...</div>
@@ -98,7 +131,9 @@ export default function Puzzle(){
   }
 
   function handleClick(e){
-    setDropdownOpen(true)
+    if(!win){
+      setDropdownOpen(true)
+    }
     let rect=e.target.getBoundingClientRect()
     setMousePos([`${e.pageX}px`,`${e.pageY }px`])
     setRelativeMousePos([(e.clientX-rect.left)/rect.width,(e.clientY-rect.top)/rect.height ])
@@ -111,6 +146,8 @@ export default function Puzzle(){
   function setCorrectCircle(coords){
     setCorrectCoords([...correctCoords,coords])
   }
+
+
   const dropdown=<Dropdown puzzle_id={puzzle.id}characters={characters} left={mousePos[0]} top={mousePos[1]} relativeMousePos={relativeMousePos} closeDropdown={closeDropdown} setCorrectCircle={setCorrectCircle}/>
   return(
     <div className={style.background}>
@@ -121,7 +158,7 @@ export default function Puzzle(){
         <h1 className={style.heading}>{puzzle.name}</h1>
         <div className={style.stats}>
           <h1>Find all characters</h1>
-          <h1>11:11</h1>
+          <h1>Time:{playTime}</h1>
         </div>
         <div className={style.imgContainer}>
           <img className={style.img} src={puzzle.imageUrl} onClick={handleClick} ref={imageNode}></img>
@@ -130,6 +167,7 @@ export default function Puzzle(){
           })}
         </div>
       </div>
+      {win?<WinDialog timeFinished={time}/>:null}
     </div>
   )
 }

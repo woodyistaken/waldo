@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_06_045627) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_07_024833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,9 +24,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_06_045627) do
     t.index ["puzzle_id"], name: "index_characters_on_puzzle_id"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "puzzles", force: :cascade do |t|
     t.text "name"
     t.text "imageUrl"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "seconds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
