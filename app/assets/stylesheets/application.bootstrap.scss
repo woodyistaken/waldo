@@ -1,0 +1,125 @@
+/* app/assets/stylesheets/Puzzles.module.css */
+.Puzzles_background {
+  box-sizing: border-box;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.Puzzles_container {
+  margin: 0px 50px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+}
+.Puzzles_heading {
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+.Puzzles_puzzleContainer {
+  display: flex;
+  gap: 30px;
+}
+.Puzzles_card {
+  flex: 1;
+  text-decoration: none;
+  color: black;
+}
+
+/* app/assets/stylesheets/Card.module.css */
+.Card_card {
+  box-shadow: 2px 2px 10px black;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  transition: transform 0.1s ease-in;
+  cursor: pointer;
+}
+.Card_card:hover {
+  transform: scale(1.05);
+  color: red;
+}
+.Card_img {
+  width: 100%;
+}
+.Card_name {
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+/* app/assets/stylesheets/Puzzle.module.css */
+.Puzzle_background {
+  box-sizing: border-box;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.Puzzle_container {
+  margin: 0px 100px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: right;
+  max-width: 100%;
+}
+.Puzzle_heading {
+  text-align: center;
+  font-size: 2rem;
+}
+.Puzzle_img {
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+  display: inline-block;
+}
+.Puzzle_imgContainer {
+  position: relative;
+}
+.Puzzle_stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+/* app/assets/stylesheets/Dropdown.module.css */
+.Dropdown_container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(211, 211, 211, 0.61);
+  z-index: 1;
+}
+
+/* app/assets/stylesheets/CorrectCircle.module.css */
+.CorrectCircle_circle {
+  background-color: rgba(144, 238, 144, 0.767);
+  border-radius: 1000px;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* app/assets/stylesheets/WinDialog.module.css */
+
+/* app/assets/stylesheets/application.css */
+html {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+/*# sourceMappingURL=/assets/application-2dff4cff.css.map */
