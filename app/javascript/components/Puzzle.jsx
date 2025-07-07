@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
 import { useState,useEffect,useRef } from "react";
-import style from '../../assets/stylesheets/Puzzle.module.css'
+import style from './Puzzle.module.css'
 import Dropdown from "./Dropdown";
 import CorrectCircle from "./CorrectCircle";
 import WinDialog from "./WinDialog";

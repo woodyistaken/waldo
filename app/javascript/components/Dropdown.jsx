@@ -1,6 +1,6 @@
 import React from "react"
 import { useRef } from "react"
-import style from '../../assets/stylesheets/Dropdown.module.css'
+import style from './Dropdown.module.css'
 
 
 export default function Dropdown({puzzle_id,characters,left,top,closeDropdown,relativeMousePos,setCorrectCircle}){

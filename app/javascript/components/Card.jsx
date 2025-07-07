@@ -1,5 +1,5 @@
 import React from "react";
-import style from '../../assets/stylesheets/Card.module.css'
+import style from './Card.module.css'
 
 export default function Card({imageUrl,name}){
   return (<div className={style.card}>

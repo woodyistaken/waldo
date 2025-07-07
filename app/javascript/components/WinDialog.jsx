@@ -1,5 +1,4 @@
 import React from "react";
-import style from '../../assets/stylesheets/WinDialog.module.css'
 
 export default function WinDialog({timeFinished}){
   return(

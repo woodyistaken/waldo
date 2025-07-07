@@ -80,7 +80,10 @@ test:
 #
 production:
   primary: &primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *default
+    database: waldo_production
+    username: waldo
+    password: <%= ENV["WALDO_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: waldo_production_cache

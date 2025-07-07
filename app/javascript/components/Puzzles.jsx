@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import style from '../../assets/stylesheets/Puzzles.module.css'
+import style from './Puzzles.module.css'
 import Card from './Card'
 
  function Puzzles(){
